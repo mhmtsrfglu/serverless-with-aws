@@ -1,5 +1,5 @@
 import { HttpMethod } from "aws-cdk-lib/aws-lambda";
-import { createCompany, deleteCompanyById,getAllCompanies,getCompanyById } from "./services";
+import { createCompany, deleteCompanyById,getAllCompanies,getCompanyById } from "../services";
 import { APIGatewayProxyEvent} from 'aws-lambda';
 
 exports.handler = async (event:APIGatewayProxyEvent) => {

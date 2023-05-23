@@ -2,7 +2,7 @@ import {
     QueryCommand, UpdateCommand, PutCommand
 } from "@aws-sdk/lib-dynamodb";
 import { RECORD_TYPE } from "../../common/constants";
-import { getDate, getDateTime } from "../helpers";
+import { getDate, getDateTime } from "../../common/helpers";
 import client from "../db";
 import { IOrder, ORDER_STATUS } from "../../common/interfaces";
 

@@ -49,7 +49,7 @@ describe("DynamoDb Table", () => {
     );
   });
 
-  test("Put item to table", async () => {
+  test("should add the requested item to table", async () => {
     if (items.length) {
       for (const item of items) {
         const params = {

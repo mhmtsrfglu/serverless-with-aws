@@ -1,11 +1,8 @@
 import { Duration } from "aws-cdk-lib";
-import { IFunction } from "aws-cdk-lib/aws-lambda";
-import { SqsEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
 import { IQueue, Queue } from "aws-cdk-lib/aws-sqs";
 import { Construct } from "constructs";
 
-interface DLPQueuesProps{
-}
+export const VISIBILITY_TIMEOUT:number = 20
 
 export class DLPQueues extends Construct{
 
@@ -19,7 +16,7 @@ export class DLPQueues extends Construct{
     private createOrderQueue(){
         return new Queue(this,"OrderQueue",{
             queueName: "OrderQueue.fifo",
-            visibilityTimeout: Duration.seconds(30),
+            visibilityTimeout: Duration.seconds(VISIBILITY_TIMEOUT),
             fifo:true,
             contentBasedDeduplication:true,
         })

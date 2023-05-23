@@ -2,13 +2,14 @@ import { DeleteMessageCommand, Message, ReceiveMessageCommand, SQSClient, SendMe
 const sqsClient = new SQSClient({});
 const SQS_QUEUE_URL = process.env.QUEUE_URL;
 import { v4 as uuidv4 } from "uuid";
+import { VISIBILITY_TIMEOUT } from "../../../lib/dlp-queues";
 
 const readMessageFromQueue = async (messageCount:number) => {
     return await sqsClient.send(new ReceiveMessageCommand({
         MaxNumberOfMessages: messageCount,
         MessageAttributeNames: ["All"],
         QueueUrl: SQS_QUEUE_URL,
-        VisibilityTimeout: 20,
+        VisibilityTimeout: VISIBILITY_TIMEOUT,
         WaitTimeSeconds: 0,
     }));
 }
