@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "e34b6d1e-4b81-49ce-ba63-cf5da8cac0b5",
+		"name": "donut-locker-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25553896",
+		"_collection_link": "https://warped-satellite-209728.postman.co/workspace/marketing-app~adea4f1e-d36c-4ac0-82eb-32a750a3b65a/collection/25553896-e34b6d1e-4b81-49ce-ba63-cf5da8cac0b5?action=share&creator=25553896&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "create-company-DonutPatrol",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\":\"DonutPatrol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{company_service}}company/new",
+							"host": [
+								"{{company_service}}company"
+							],
+							"path": [
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-company-DunkinDonuts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\":\"DunkinDonuts\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{company_service}}company/new",
+							"host": [
+								"{{company_service}}company"
+							],
+							"path": [
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-company-DonutDispatcher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\":\"DonutDispatchers\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{company_service}}company/new",
+							"host": [
+								"{{company_service}}company"
+							],
+							"path": [
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-company",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{company_service}}company/delete/dac346e3-e4b3-4666-ab93-085e1740d9a9",
+							"host": [
+								"{{company_service}}company"
+							],
+							"path": [
+								"delete",
+								"dac346e3-e4b3-4666-ab93-085e1740d9a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all-companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{company_service}}/company/",
+							"host": [
+								"{{company_service}}"
+							],
+							"path": [
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-company-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{company_service}}/company/b5121678-5940-45e13-ba4b-b0fc84754733",
+							"host": [
+								"{{company_service}}"
+							],
+							"path": [
+								"company",
+								"b5121678-5940-45e13-ba4b-b0fc84754733"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "get-order-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_service}}orders/listByCompany/97fce6aa-04e7-499c-af6f-c52458e3f348",
+							"host": [
+								"{{order_service}}orders"
+							],
+							"path": [
+								"listByCompany",
+								"97fce6aa-04e7-499c-af6f-c52458e3f348"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todays-order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_service}}orders/todaysOrders",
+							"host": [
+								"{{order_service}}orders"
+							],
+							"path": [
+								"todaysOrders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "peek-order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{order_service}}orders/peek",
+							"host": [
+								"{{order_service}}orders"
+							],
+							"path": [
+								"peek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new-order-DonuPatrol",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"97fce6aa-04e7-499c-af6f-c52458e3f348\",\r\n    \"name\": \"Donut\",\r\n    \"deliveryDate\": \"2023-05-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{order_service}}orders/new",
+							"host": [
+								"{{order_service}}orders"
+							],
+							"path": [
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new-order-DunkinDonut",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"d95b5a2e-39d3-44a9-8e24-08d4bc2dfb7a\",\r\n    \"name\": \"Donut\",\r\n    \"deliveryDate\": \"2023-05-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{order_service}}orders/new",
+							"host": [
+								"{{order_service}}orders"
+							],
+							"path": [
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new-order-DonutDispatcher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyId\": \"1fbd17bc-7238-4a48-bc4f-c19b0f6c3a22\",\r\n    \"name\": \"Donut\",\r\n    \"deliveryDate\": \"2023-05-23\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{order_service}}orders/new",
+							"host": [
+								"{{order_service}}orders"
+							],
+							"path": [
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "order_service",
+			"value": "https://fp4gzt9z70.execute-api.eu-west-1.amazonaws.com/prod/",
+			"type": "string"
+		},
+		{
+			"key": "company_service",
+			"value": "https://9tov0vroub.execute-api.eu-west-1.amazonaws.com/prod/",
+			"type": "string"
+		}
+	]
+}
