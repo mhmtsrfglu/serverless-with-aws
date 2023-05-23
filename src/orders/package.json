@@ -1,0 +1,19 @@
+{
+  "name": "orders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.335.0",
+    "@aws-sdk/client-sqs": "^3.335.0",
+    "@aws-sdk/lib-dynamodb": "^3.335.0",
+    "@aws-sdk/util-dynamodb": "^3.335.0",
+    "aws-lambda": "^1.0.7",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115"
+  }
+}
