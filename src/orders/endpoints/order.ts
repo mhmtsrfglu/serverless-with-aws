@@ -5,42 +5,52 @@ import {
   getTodayAllOrders,
   peek,
 } from "../services";
+import { HttpMethod } from "aws-cdk-lib/aws-lambda";
 
 exports.handler = async (event: APIGatewayProxyEvent) => {
   try {
     switch (event.resource) {
       case "/orders/new":
-        const order = await createOrder(event);
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: order,
-          }),
-        };
+        if (event.httpMethod === HttpMethod.POST) {
+          const order = await createOrder(event);
+          return {
+            statusCode: 200,
+            body: JSON.stringify({
+              message: order,
+            }),
+          };
+        }
       case "/orders/peek":
-        const donut = await peek();
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: donut.order ? donut : "No donuts in lockers!",
-          }),
-        };
+        if (event.httpMethod === HttpMethod.GET) {
+          const donut = await peek();
+          return {
+            statusCode: 200,
+            body: JSON.stringify({
+              message: donut.order ? donut : "No donuts in lockers!",
+            }),
+          };
+        }
       case "/orders/todaysOrders":
-        const todayOrders = await getTodayAllOrders();
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: todayOrders,
-          }),
-        };
+        if (event.httpMethod === HttpMethod.GET) {
+          const todayOrders = await getTodayAllOrders();
+          return {
+            statusCode: 200,
+            body: JSON.stringify({
+              message: todayOrders,
+            }),
+          };
+        }
       case "/orders/listByCompany/{id}":
-        const orders = await getOrdersByCompany(event);
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: orders,
-          }),
-        };
+        if (event.httpMethod === HttpMethod.GET) {
+          const orders = await getOrdersByCompany(event);
+          return {
+            statusCode: 200,
+            body: JSON.stringify({
+              message: orders,
+            }),
+          };
+        }
+
       default:
         throw new Error(`Unsupported route: "${event.httpMethod}"`);
     }

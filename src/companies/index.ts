@@ -1,10 +1,11 @@
+import { HttpMethod } from "aws-cdk-lib/aws-lambda";
 import { createCompany, deleteCompanyById,getAllCompanies,getCompanyById } from "./services";
-import { APIGatewayProxyEvent } from 'aws-lambda';
+import { APIGatewayProxyEvent} from 'aws-lambda';
 
 exports.handler = async (event:APIGatewayProxyEvent) => {
   try {
     switch (event.httpMethod) {
-      case "POST":
+      case HttpMethod.POST:
         const createdCompany = await createCompany(event);
         return {
           statusCode: 200,
@@ -13,7 +14,7 @@ exports.handler = async (event:APIGatewayProxyEvent) => {
             body: createdCompany,
           }),
         };
-        case "GET":
+        case HttpMethod.GET:
           if (event.pathParameters != null) {
             const company = await getCompanyById(event);
             return {
@@ -30,7 +31,7 @@ exports.handler = async (event:APIGatewayProxyEvent) => {
               }),
             };
           }
-      case "DELETE":
+      case HttpMethod.DELETE:
         await deleteCompanyById(event);
         return {
           statusCode: 200,
