@@ -7,7 +7,11 @@ import {
 } from "../queue";
 import { CompanyNotFoundException } from "../../common/exceptions/CompanyNotFoundException";
 import { IOrder, ORDER_STATUS } from "../../common/interfaces";
-import { convertDateToISOString, getDate, getDateTime } from "../../common/helpers";
+import {
+  convertDateToISOString,
+  getDate,
+  getDateTime,
+} from "../../common/helpers";
 import { RECORD_TYPE } from "../../common/constants";
 import {
   createOrderCommand,
@@ -56,7 +60,11 @@ const bufferTodayOrdersToQueue = async () => {
 
     for (const order of orders) {
       const message = await sendMessageToQueue(JSON.stringify(order));
-      await updateOrderStatusByOrderIdCommand(order.id, ORDER_STATUS.PICKED_UP);
+      if(message && message.MessageId){
+        await updateOrderStatusByOrderIdCommand(order.id, ORDER_STATUS.PICKED_UP);
+      }else{
+        await updateOrderStatusByOrderIdCommand(order.id, ORDER_STATUS.TECH_FAILURE);
+      }
       console.log("Message sended to Queue", message);
     }
   } catch (error) {
@@ -177,10 +185,12 @@ const peek = async () => {
         const company = await getCompanyById(body.companyId);
         order.order = body;
         order.company = company.companyName;
-        const updateEvent = await updateOrderStatusDeliveredByOrderIdCommand(body.id)
+        const updateEvent = await updateOrderStatusDeliveredByOrderIdCommand(
+          body.id
+        );
         await deleteMessageFromQueue(message);
-        order.order.orderStatus = ORDER_STATUS.DELIVERED
-        order.order.deliveredAt = updateEvent?.Attributes?.deliveredAt
+        order.order.orderStatus = updateEvent?.Attributes?.orderStatus
+        order.order.deliveredAt = updateEvent?.Attributes?.deliveredAt;
       }
     }
 

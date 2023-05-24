@@ -78,7 +78,7 @@ export class DLPServices extends Construct {
     const orderFunction = new NodejsFunction(this, "ordersLambdaFunction", {
       entry: join(__dirname, `../src/orders/handlers/order.ts`),
       ...nodeJsFunctionProps,
-      functionName: "ordersEndpoint"
+      functionName: "ordersEndpoint",
     });
 
     tables.companyTable.grantReadWriteData(orderFunction);
@@ -104,7 +104,7 @@ export class DLPServices extends Construct {
     const companyFunction = new NodejsFunction(this, "companyLambdaFunction", {
       entry: join(__dirname, `../src/companies/handlers/index.ts`),
       ...nodeJsFunctionProps,
-      functionName: "companyEndpoint"
+      functionName: "companyEndpoint",
     });
 
     tables.companyTable.grantReadWriteData(companyFunction);
@@ -133,7 +133,7 @@ export class DLPServices extends Construct {
       {
         entry: join(__dirname, `../src/orders/handlers/eventScheduler.ts`),
         ...nodeJsFunctionProps,
-        functionName:"orderSchedulerEventFunction"
+        functionName: "orderSchedulerEventFunction",
       }
     );
 
